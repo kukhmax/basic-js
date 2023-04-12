@@ -18,7 +18,10 @@ function transform( arr ) {
     const newArr = [];
     // let prev = arr[0];
     for (let i of arr) {
-      if (typeof i === 'number') {
+
+        if (i >  i + 1) {
+          continue;
+        }
         if (i === '--discard-prev') {
           if (newArr.length > 0) {
             newArr.pop();
@@ -36,13 +39,17 @@ function transform( arr ) {
         } else if (i === '--discard-next') {
           newArr.push('next');
           continue;
+        } else if (typeof i !== 'number') {
+          continue;
         }
         if (newArr[newArr.length - 1] === 'next') {
           newArr.pop();
           continue;
         }
+
+
         newArr.push(i);
-      }
+
       }
     return newArr;
   } else {
